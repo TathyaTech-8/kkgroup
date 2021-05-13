@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "730636676978",
+    "project_id": "kkgroup-e6952",
+    "storage_bucket": "kkgroup-e6952.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730636676978:android:5281806cd0fe0ae9f9f7eb",
+        "android_client_info": {
+          "package_name": "com.tathyatech.kkgroup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730636676978-sd4ki9f04l0inmq07mfpv9p1u5dbokhi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbiiazg2KYyhVDhOhZIG1wvcXmkExu0pM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730636676978-sd4ki9f04l0inmq07mfpv9p1u5dbokhi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

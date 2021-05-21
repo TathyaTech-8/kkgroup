@@ -25,6 +25,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
   final _searchController = new TextEditingController();
   final _amtController = new TextEditingController();
   final _detController = new TextEditingController();
+  final _dateController = new TextEditingController();
 
   bool isLoading = false;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
@@ -43,8 +44,8 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
   final _formKey = GlobalKey<FormState>();
 
   // simple usage
-  List <OthList> _Fulllist = List <OthList>();
-  List <OthList> _list =new List<OthList>();
+  List <OthList> _Fulllist = [];
+  List <OthList> _list =[];
 
   _OTHER_EXPState({this.PageIndex});
 
@@ -53,6 +54,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
     GetTxnAPI().whenComplete(() {
       isLoading = true;
       _list = List.from(_Fulllist);
+      _dateController.text = DateTime.now().toString();
     });
     GetTeamList();
   }
@@ -180,7 +182,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Radio(
-                          activeColor: Colors.cyan,
+                            activeColor: Colors.cyan,
                             value: 0,
                             groupValue: _radioValue,
                             onChanged:  (value){
@@ -205,7 +207,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                      padding: EdgeInsets.symmetric(vertical: 0,horizontal: 20),
                       child: DropdownButton(
                         isDense: true,
                           style: Mystyle().InputStyle,
@@ -229,7 +231,9 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
                           }).toList(),
                     ),
                     ),
-                    SizedBox(height: 18,),
+                    SizedBox(height: 13,),
+                    AppController().DatePicker(_dateController),
+                    SizedBox(height: 13,),
                     InputFieldArea2(hint: "રકમ",icon: Icons.money,errorTxt: "રકમ દાખલ કરો",maxLen: 10,controller: _amtController,keyBoard: TextInputType.number,onChanged: (value) {},),
                     SizedBox(height: 18,),
                     InputFieldArea2(hint: "વિગત",icon: Icons.list_alt,errorTxt: "વિગત દાખલ કરો",maxLen: 10,controller: _detController,onChanged: (value) {},),
@@ -255,6 +259,8 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
                               animateOnTap: false,
                               child: Text('બંધ કરો', style: TextStyle(color: Colors.black,fontSize: 20)),
                               onPressed: () {
+                                print(_dateController.text);
+
                                 Navigator.of(context).pop();
                               },
                               width: MediaQuery.of(context).size.width*0.3,
@@ -369,6 +375,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
     //print(_list);
   }
   RefreshData() {
+
     isLoading = false;
     GetTxnAPI().whenComplete(()
     {
@@ -407,7 +414,8 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
         "oth_type" : _radioValue.toString(),
         "oth_details": _detController.text,
         "oth_by": Constants.USERID,
-        "oth_ricived_by": _dropValue
+        "oth_ricived_by": _dropValue,
+        'date' : _dateController.text
       };
 
       response = await dio.post(Constants.API_OTHADD, data: queryParameters).timeout(Constants.API_TIMEOUT);

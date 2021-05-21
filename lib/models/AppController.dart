@@ -52,11 +52,11 @@ class AppController {
   }
 
   DatePicker(_dateController){
-    return Padding(padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+    return Padding(padding: EdgeInsets.symmetric(horizontal: 15,vertical: 5),
       child: DateTimePicker(
         type: DateTimePickerType.date,
         controller: _dateController,
-        decoration: new InputDecoration(border: Mystyle().FullBorder(Colors.black54),icon:  Icon(Icons.date_range,color: Colors.black,size: 30,)),
+        decoration: new InputDecoration(border: Mystyle().FullBorder(Colors.black54),prefixIcon:  Icon(Icons.date_range,color: Colors.black,size: 30,)),
         //initialValue: DateTime.now().toString(),
         firstDate: DateTime(2000),
         style: Mystyle().InputStyle,

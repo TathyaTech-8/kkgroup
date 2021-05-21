@@ -3,7 +3,7 @@ class Constants{
 
 
   //TODO API Calling Urls
-  /*static String API_LOGIN = "https://tathyatech.com/api/login.php";
+  static String API_LOGIN = "https://tathyatech.com/api/login.php";
   static String API_GETCUST = "https://tathyatech.com/api/showcustomer.php";
   static String API_ADDCUST = "https://tathyatech.com/api/register.php";
   static String API_GETLOANS = "https://tathyatech.com/api/showloan.php";
@@ -18,7 +18,7 @@ class Constants{
   static String API_GETOTH = "https://tathyatech.com/api/showotherdata.php";
   static String API_UPDATETXN = "https://tathyatech.com/api/transectiondataupadate.php";
   static String API_OTHADD = "https://tathyatech.com/api/othdataadd.php";
-  static String API_GETTLOAN = "https://tathyatech.com/api/tloanshow.php";
+  static String API_GETTLOAN = "https://tathyatech.com/api/tloanshow.p                      hp";
   static String API_GETTEMI = "https://tathyatech.com/api/tlemishow.php";
   static String API_UPDATETLAON = "https://tathyatech.com/api/tloanadd.php";
   static String API_UPDATETEMI = "https://tathyatech.com/api/tlemiupdate.php";
@@ -28,9 +28,9 @@ class Constants{
   static String  API_GETDATA = "https://tathyatech.com/api/checkbalance.php";
   static String  API_LOGS = "https://tathyatech.com/api/login_logs.php";
   static String  API_ALLDATA = "https://tathyatech.com/api/alldata.php";
-  static String  API_PASSWORDUPDATE = "https://tathyatech.com/api/UpdatePassword.php";*/
+  static String  API_PASSWORDUPDATE = "https://tathyatech.com/api/UpdatePassword.php";
 
-  static String API_LOGIN = "https://tathyatech.com/api2/login.php";
+  /*static String API_LOGIN = "https://tathyatech.com/api2/login.php";
   static String API_GETCUST = "https://tathyatech.com/api2/showcustomer.php";
   static String API_ADDCUST = "https://tathyatech.com/api2/register.php";
   static String API_GETLOANS = "https://tathyatech.com/api2/showloan.php";
@@ -55,7 +55,7 @@ class Constants{
   static String  API_GETDATA = "https://tathyatech.com/api2/checkbalance.php";
   static String  API_LOGS = "https://tathyatech.com/api2/login_logs.php";
   static String  API_ALLDATA = "https://tathyatech.com/api2/alldata.php";
-  static String  API_PASSWORDUPDATE = "https://tathyatech.com/api2/UpdatePassword.php";
+  static String  API_PASSWORDUPDATE = "https://tathyatech.com/api2/UpdatePassword.php";*/
 
 
 

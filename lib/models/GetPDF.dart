@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:kkgroup/models/Constants.dart';
 import 'package:kkgroup/models/models.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'AppController.dart';
 class GetPDF{
@@ -93,6 +94,13 @@ class GetPDF{
     return range;
   }
 
+  getFile(String path) async {
+    if(await File(path).exists()){
+      File(path).delete();
+    }
+    return File(path).create();
+  }
+
   getLogPDF(List<GetLog> _list) async {
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
@@ -133,6 +141,7 @@ class GetPDF{
   }
   getCustList(List<GetCustomer> _list) async {
 
+    print("Entered");
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
@@ -168,8 +177,11 @@ class GetPDF{
     final List<int> bytes = workbook.saveAsStream();
     workbook.dispose();
 
-    final file = File('${Constants.DIR_PATH}/Customer List.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+      final file = File('${Constants.DIR_PATH}/Customer List.xlsx');
+      await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+
+
+
   }
   getLoanOnId(GetCustomer _cust, GetLoans _loan, List<GetEmi> _emi,) async {
 
@@ -507,11 +519,11 @@ class GetPDF{
       else {
         currid = int.parse(element.cust_id);
         rowno++;
-        setCellValue(sheet, DetailsStyle, getStringRange(rowno, 1), "નામ : ${element.cust_name}",autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 2), element.cust_name,autofit: false);
+        setCellValue(sheet, DetailsStyle, getStringRange(rowno, 1), "નામ ",autofit: false);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 2), element.cust_name,autofit: false);
         rowno++;
-        setCellValue(sheet, DetailsStyle, getStringRange(rowno, 1), "મોબાઇલ નં. : ${element.cust_mobile}",autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 2), element.cust_mobile,autofit: false);
+        setCellValue(sheet, DetailsStyle, getStringRange(rowno, 1), "મોબાઇલ નં.",autofit: false);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 2), element.cust_mobile,autofit: false);
         rowno++;
 
         setCellValue(sheet, CommonStyle, getStringRange(rowno, 2), element.loan_id,autofit: false);
@@ -612,23 +624,68 @@ class GetPDF{
       await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
     }
   }
-  getHisabPDF() async {
+  getHisabPDF(List<BankData> list, String title) async {
     // Create a new Excel Document.
     final Workbook workbook = Workbook();
-
-// Accessing worksheet via index.
     final Worksheet sheet = workbook.worksheets[0];
+    final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
+    final Style DetailsStyle = DetailsCellStyle(workbook);
+    final Style TableHeadertyle = TableHeaderCellStyle(workbook);
+    final Style CommonStyle = CommonCellStyle(workbook);
+    sheet.enableSheetCalculations();
 
-// Set the text value.
-    sheet.getRangeByName('A1').setText('Hello World!');
+    setCellValue(sheet, FileHeaderStyle, 'A1:F1', "હિસાબ $title", autofit: false, merge: true);
 
 
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 2), "ડાયરી નં");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 3), "લોન ની તારીખ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 4), "નામ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 5), "મોબાઇલ નં");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 6), "લોન ની રકમ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 7), "આપેલ રકમ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 8), "વ્યાજ કપાત");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 9), "હપ્તા ના દિવસ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 10), "હપ્તા ની રકમ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 11), "કુલ હપ્તા");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 12), "બાકી હપ્તા");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 13), "બાકી મુદ્દલ");
+
+    int rowno = 5;
+    int start = rowno,end = rowno;
+    for(var element in list){
+
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 2), element.bl_date,autofit: false);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 3), element.bl_loan_amt,autofit: false);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 4), element.bl_emi_amount);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 5), element.bl_penlti_amount,autofit: false);
+        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 6), element.b,autofit: false);
+        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 7), element.loan_given_amount,autofit: false);
+        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 8), given_amt,autofit: false);
+        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 9), element.loan_emi_day,autofit: false);
+        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 10), element.loan_emi_amount,autofit: false);
+        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 11), element.loan_total_emi,autofit: false);
+        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 12), left_emi,autofit: false);
+        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 13), left_amt,autofit: false);
+
+        rowno++;
+    }
+    end = rowno;
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,6), "=SUM(${getStringRange(start, 6,end,6)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,7), "=SUM(${getStringRange(start, 7,end,7)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,8), "=SUM(${getStringRange(start, 8,end,8)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,12), "=SUM(${getStringRange(start, 12,end,12)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,13), "=SUM(${getStringRange(start, 13,end,13)})");
+
+
+    for(int i = 1; i <= sheet.getLastColumn();i++){
+      sheet.autoFitColumn(i);
+    }
 
 // Save and dispose the document.
     final List<int> bytes = workbook.saveAsStream();
     workbook.dispose();
 
-    final file = File('${Constants.DIR_PATH}/customers.xlsx');
+    final file = File('${Constants.DIR_HISAB}/Hisab $title.xlsx');
     await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
 
     //File('Output.xlsx').writeAsBytes(bytes);

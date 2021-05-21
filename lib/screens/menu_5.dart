@@ -364,7 +364,7 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
 
 
   getPDF(){
-    GetPDF().getHisabPDF();
+    GetPDF().getHisabPDF(_list,month=="0"? year.toString() : "${Constants.Months[int.parse(month)]} $year");
   }
   Future<void> GetBankAPI() async {
     isLoading = false;
@@ -376,8 +376,7 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
       var queryParameters = {"year":year,"month":month == "0" ? "" : month };
       print(queryParameters);
 
-      response =
-      await dio.post(Constants.API_BANKDATA, data: queryParameters).timeout(Constants.API_TIMEOUT);
+      response = await dio.post(Constants.API_BANKDATA, data: queryParameters).timeout(Constants.API_TIMEOUT);
       if (response != null && response.data != null) {
         var nodata = response.data["nodata"];
         var resCode = nodata["response_code"];

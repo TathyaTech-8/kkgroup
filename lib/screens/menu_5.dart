@@ -1,4 +1,3 @@
-import 'package:date_util/date_util.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
@@ -9,7 +8,6 @@ import 'package:kkgroup/models/GetPDF.dart';
 import 'package:kkgroup/models/models.dart';
 import 'package:kkgroup/models/styles.dart';
 import 'package:kkgroup/screens/menu_5_1.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_select/smart_select.dart';
 
@@ -28,14 +26,13 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
   final int PageIndex;
   final int getMonth;
   final int getYear;
-  final _searchController = new TextEditingController();
 
   bool isLoading = true;
 
   String month = Constants.SelMonth;
   String year = Constants.SelYear ;
 
-  final _btnController = new RoundedLoadingButtonController();
+  //final _btnController = new RoundedLoadingButtonController();
 
 
 
@@ -106,7 +103,7 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
     print("$Opning    $Closing");
 
     for(var element in _list){
-      int Inc = int.parse(element.bl_loan_amt) + int.parse(element.bl_emi_amount) + int.parse(element.bl_penlti_amount);
+      int Inc = int.parse(element.bl_loan_amt) + int.parse(element.bl_emi_amount) + int.parse(element.bl_penlti_amount) + int.parse(element.bl_other_income);
       //int Exp = int.parse(element.bl_loan_expance) + int.parse(element.bl_loan_given) + int.parse(element.bl_other_expance);
       int Exp = int.parse(element.bl_loan_expance) + int.parse(element.bl_other_expance);
       int Sav = int.parse(element.bl_saving) - int.parse(element.bl_other_expance) - int.parse(element.bl_loan_expance);
@@ -352,13 +349,6 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
             );
           }
       ));
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          MainCard2("${Constants.Months[int.parse(month)]} $year"),
-
-        ],
-      );
     }
   }
 
@@ -409,7 +399,7 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
             isLoading = true;
           });
         } else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
           setState(() {
             isLoading = true;
           });
@@ -425,7 +415,7 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
     }
     catch(e){
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
       setState(() {
         isLoading = true;
       });

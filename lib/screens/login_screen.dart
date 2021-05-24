@@ -169,7 +169,7 @@ class LoginScreenState extends State<LoginScreen> {
      }
    }
    catch(TimeoutException){
-     AppController().ShowToast(text: Constants.NO_INTERNET);
+     AppController().showToast(text: Constants.NO_INTERNET);
      _btnController.reset();
     }
 

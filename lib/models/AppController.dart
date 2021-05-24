@@ -34,7 +34,7 @@ import 'Constants.dart';
 import 'styles.dart';
 
 class AppController {
-  void ShowToast({String text, Color bgColor = Colors.grey, Color fontColor = Colors.white}){
+  void showToast({String text, Color bgColor = Colors.grey, Color fontColor = Colors.white}){
     Fluttertoast.showToast(
         msg: text,
         toastLength:

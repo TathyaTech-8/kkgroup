@@ -74,7 +74,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
       GetPDF().getOthList(_list, title);
     }
     else{
-      AppController().ShowToast(text: Constants.NO_DATA);
+      AppController().showToast(text: Constants.NO_DATA);
     }
   }
   @override
@@ -157,7 +157,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
       }
       catch(e){
         print(e.toString());
-        AppController().ShowToast(text: Constants.NO_INTERNET);
+        AppController().showToast(text: Constants.NO_INTERNET);
       }
   }
   AddExp() {
@@ -453,7 +453,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
       }
     } catch (e) {
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 
@@ -513,7 +513,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
           });
         }
         else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
           setState(() {
             isLoading = true;
           });
@@ -522,7 +522,7 @@ class _OTHER_EXPState extends State<OTHER_EXP> {
     }
     catch(e){
       print("excep "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 }

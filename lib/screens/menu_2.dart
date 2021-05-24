@@ -70,7 +70,7 @@ class _TODAY_COLLState extends State<TODAY_COLL> {
       GetPDF().getTodayList(_list, date, false);
     }
     else{
-      AppController().ShowToast(text: Constants.NO_DATA);
+      AppController().showToast(text: Constants.NO_DATA);
     }
   }
 
@@ -329,7 +329,7 @@ class _TODAY_COLLState extends State<TODAY_COLL> {
     }
     catch(e){
       print("excep "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   Future<void> GetEmiOnDateAPI() async {
@@ -398,7 +398,7 @@ class _TODAY_COLLState extends State<TODAY_COLL> {
     }
     catch(e){
       print("excep "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   Future<void> GetCustAPI(String id) async {
@@ -421,7 +421,7 @@ class _TODAY_COLLState extends State<TODAY_COLL> {
           print("cst data chk = ${customer.cust_id} ${data.length}");
         }
         else if(nodata["response_code"] == Constants.CODE_NULL){
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
         }
       }
       else {
@@ -431,7 +431,7 @@ class _TODAY_COLLState extends State<TODAY_COLL> {
     }
     catch(e){
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   Future<void> GetLoansAPI(String cust_id,String loan_id) async {
@@ -465,13 +465,13 @@ class _TODAY_COLLState extends State<TODAY_COLL> {
           //AppController().ShowToast(text: Constants.NO_REACHABILITY);
         }
         else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
         }
       }
     }
     catch(e){
       print("excep "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   MainCard(){

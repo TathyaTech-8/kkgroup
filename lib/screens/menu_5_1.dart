@@ -237,7 +237,7 @@ class _DailyTotalState extends State<DailyTotal> {
     }
     catch (e) {
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   storeData(element,int index){

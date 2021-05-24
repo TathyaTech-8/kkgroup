@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:date_util/date_util.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,14 +43,14 @@ class _TEMILISTState extends State<TEMILIST> {
   final _nameController = new TextEditingController();
   final _btnController2 = new RoundedLoadingButtonController();
 
-  final _amtPenController = new TextEditingController();
+  //final _amtPenController = new TextEditingController();
   final _btnController = new RoundedLoadingButtonController();
   final _formKey = GlobalKey<FormState>();
 
   bool is1Pressed = false;
   bool is2Pressed = false;
 
-  List<GetTEmi> _list = List<GetTEmi>();
+  List<GetTEmi> _list = [];
   GetTEmi GetTEmiModel = new GetTEmi();
 
   void initState() {
@@ -567,7 +566,7 @@ class _TEMILISTState extends State<TEMILIST> {
     } catch (e) {
       _btnController2.reset();
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   Future<void> UpdateEmiAPI(String emiId,String emi) async {
@@ -576,8 +575,8 @@ class _TEMILISTState extends State<TEMILIST> {
     Dio dio = new Dio();
 
 
-    DateTime now = new DateTime.now();
-    var date = "${now.day}-${now.month}-${now.year}";
+    //DateTime now = new DateTime.now();
+    // var date = "${now.day}-${now.month}-${now.year}";
     try {
       var queryParameters = {
         "tm_id":Constants.USERID,
@@ -623,7 +622,7 @@ class _TEMILISTState extends State<TEMILIST> {
       }
     } catch (e) {
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 
@@ -662,7 +661,7 @@ class _TEMILISTState extends State<TEMILIST> {
             isLoading = true;
           });
         } else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
           setState(() {
             isLoading = true;
           });
@@ -670,7 +669,7 @@ class _TEMILISTState extends State<TEMILIST> {
       }
     } catch (e) {
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 
@@ -712,12 +711,12 @@ class _TEMILISTState extends State<TEMILIST> {
           });
           //AppController().ShowToast(text: "${data.length} EMI Found");
         } else if (resCode == Constants.CODE_WRONG_INPUT) {
-          AppController().ShowToast(text: msg, bgColor: Colors.red);
+          AppController().showToast(text: msg, bgColor: Colors.red);
           setState(() {
             isLoading = true;
           });
         } else if (resCode == Constants.CODE_CONFLICT) {
-          AppController().ShowToast(text: msg, bgColor: Colors.red);
+          AppController().showToast(text: msg, bgColor: Colors.red);
           setState(() {
             isLoading = true;
           });
@@ -727,7 +726,7 @@ class _TEMILISTState extends State<TEMILIST> {
             isLoading = true;
           });
         } else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
           setState(() {
             isLoading = true;
           });
@@ -735,7 +734,7 @@ class _TEMILISTState extends State<TEMILIST> {
       }
     } catch (e) {
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 }

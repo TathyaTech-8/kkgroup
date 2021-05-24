@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:kkgroup/models/Constants.dart';
 import 'package:kkgroup/models/models.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
 import 'AppController.dart';
 class GetPDF{
@@ -49,9 +48,9 @@ class GetPDF{
 
   setCellValue(sheet,style,range,value, {bool merge = false, bool autofit = true,isAmount = false}){
 
-    //print("range = $range, value = $value");
+    print("range = $range, value = $value");
     if(isAmount){
-      value = int.parse(value);
+      value = double.parse(value);
     }
 
     Range cell = sheet.getRangeByName(range);
@@ -105,7 +104,7 @@ class GetPDF{
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    //final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -137,7 +136,7 @@ class GetPDF{
     String date = "${now.day}-${now.month}-${now.year}";
 
     final file = File('${Constants.DIR_PATH}/Login Log $date.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
   getCustList(List<GetCustomer> _list) async {
 
@@ -145,7 +144,7 @@ class GetPDF{
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    // final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -178,7 +177,7 @@ class GetPDF{
     workbook.dispose();
 
       final file = File('${Constants.DIR_PATH}/Customer List.xlsx');
-      await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+      await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
 
 
 
@@ -272,13 +271,13 @@ class GetPDF{
     workbook.dispose();
 
     final file = File('${Constants.DIR_LOAN}/ડાયરી નં ${_loan.id}.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
   getTodayList(List<CollectionList> _list, String title,bool isPending) async {
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    // final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -322,13 +321,13 @@ class GetPDF{
     String date = "${now.day}-${now.month}-${now.year}";
 
     final file = File('${Constants.DIR_LOAN}/${isPending? "Pending " : ""}Collection $date.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
   getTxnList(List<TxnList> _list, String title) async {
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    // final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -379,13 +378,13 @@ class GetPDF{
     String date = "${now.day}-${now.month}-${now.year}";
 
     final file = File('${Constants.DIR_LOAN}/Transaction List $date.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
   getOthList(List<OthList> _list, String title) async {
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    // final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -428,14 +427,14 @@ class GetPDF{
     String date = "${now.day}-${now.month}-${now.year}";
 
     final file = File('${Constants.DIR_LOAN}/Other Data List $date.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
   getTeamList(List<GetTeam> _list) async {
 
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    // final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -468,7 +467,7 @@ class GetPDF{
     workbook.dispose();
 
     final file = File('${Constants.DIR_PATH}/Team List.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
   getLoanList(int type, List<TotalList> _list) async {
     final Workbook workbook = Workbook();
@@ -559,7 +558,7 @@ class GetPDF{
       String date = "${now.day}-${now.month}-${now.year}";
 
       final file = File('${Constants.DIR_LOAN}/LoanList ${date}.xlsx');
-      await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+      await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
     else if(type == 4){
       setCellValue(sheet, FileHeaderStyle, 'A1:F1', "ચાલુ ડાયરી લીસ્ટ", autofit: false, merge: true);
@@ -621,7 +620,7 @@ class GetPDF{
       String date = "${now.day}-${now.month}-${now.year}";
 
       final file = File('${Constants.DIR_LOAN}/Open LoanList ${date}.xlsx');
-      await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+      await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
     }
   }
   getHisabPDF(List<BankData> list, String title) async {
@@ -629,7 +628,7 @@ class GetPDF{
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    //final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -637,44 +636,45 @@ class GetPDF{
     setCellValue(sheet, FileHeaderStyle, 'A1:F1', "હિસાબ $title", autofit: false, merge: true);
 
 
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 2), "ડાયરી નં");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 3), "લોન ની તારીખ");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 4), "નામ");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 5), "મોબાઇલ નં");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 6), "લોન ની રકમ");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 7), "આપેલ રકમ");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 8), "વ્યાજ કપાત");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 9), "હપ્તા ના દિવસ");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 10), "હપ્તા ની રકમ");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 11), "કુલ હપ્તા");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 12), "બાકી હપ્તા");
-    setCellValue(sheet, TableHeadertyle, getStringRange(3, 13), "બાકી મુદ્દલ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 2), "તારીખ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 3), "ઓપેનિંગ બેલન્સ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 4), "બહાર થી લાવેલ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 5), "હપ્તા ની આવક");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 6), "પેનલ્ટી ની આવક");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 7), "અન્ય આવક");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 8), "કુલ બચત");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 9), "વ્યાજ ભરેલ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 10), "ડાયરી ખર્ચ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 11), "અન્ય ખર્ચ");
+    setCellValue(sheet, TableHeadertyle, getStringRange(3, 12), "ક્લોસિંગ બેલેન્સ");
 
     int rowno = 5;
     int start = rowno,end = rowno;
     for(var element in list){
 
         setCellValue(sheet, CommonStyle, getStringRange(rowno, 2), element.bl_date,autofit: false);
-        setCellValue(sheet, CommonStyle, getStringRange(rowno, 3), element.bl_loan_amt,autofit: false);
-        setCellValue(sheet, CommonStyle, getStringRange(rowno, 4), element.bl_emi_amount);
-        setCellValue(sheet, CommonStyle, getStringRange(rowno, 5), element.bl_penlti_amount,autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 6), element.b,autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 7), element.loan_given_amount,autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 8), given_amt,autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 9), element.loan_emi_day,autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 10), element.loan_emi_amount,autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 11), element.loan_total_emi,autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 12), left_emi,autofit: false);
-        //setCellValue(sheet, CommonStyle, getStringRange(rowno, 13), left_amt,autofit: false);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 3), element.bl_open,autofit: false,isAmount: true);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 4), element.bl_loan_amt,autofit: false,isAmount: true);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 5), element.bl_emi_amount,isAmount: true);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 6), element.bl_penlti_amount,autofit: false,isAmount: true);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 7), element.bl_penlti_amount,autofit: false,isAmount: true);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 8), element.bl_saving,autofit: false,isAmount: true);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 9), element.bl_loan_expance,autofit: false,isAmount: true);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 10), element.bl_loan_given,autofit: false,isAmount: true);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 11), element.bl_other_expance,autofit: false,isAmount: true);
+        setCellValue(sheet, CommonStyle, getStringRange(rowno, 12), element.bl_cloas,autofit: false,isAmount: true);
 
         rowno++;
     }
-    end = rowno;
+    end = rowno-1;
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,4), "=SUM(${getStringRange(start, 4,end,4)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,5), "=SUM(${getStringRange(start, 5,end,5)})");
     setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,6), "=SUM(${getStringRange(start, 6,end,6)})");
     setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,7), "=SUM(${getStringRange(start, 7,end,7)})");
     setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,8), "=SUM(${getStringRange(start, 8,end,8)})");
-    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,12), "=SUM(${getStringRange(start, 12,end,12)})");
-    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,13), "=SUM(${getStringRange(start, 13,end,13)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,9), "=SUM(${getStringRange(start, 9,end,9)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,10), "=SUM(${getStringRange(start, 10,end,10)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,11), "=SUM(${getStringRange(start, 11,end,11)})");
 
 
     for(int i = 1; i <= sheet.getLastColumn();i++){
@@ -686,7 +686,7 @@ class GetPDF{
     workbook.dispose();
 
     final file = File('${Constants.DIR_HISAB}/Hisab $title.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
 
     //File('Output.xlsx').writeAsBytes(bytes);
   }
@@ -758,14 +758,14 @@ class GetPDF{
     String date = "${now.day}-${now.month}-${now.year}";
 
     final file = File('${Constants.DIR_HISAB}/Hisab_${date}.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
 
   getTLoanList(List<GetTLoan> list) async {
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    //final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -806,14 +806,14 @@ class GetPDF{
     workbook.dispose();
 
     final file = File('${Constants.DIR_INVESTOR}/ Investor List.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
 
   getTLoanDetailList(GetTLoan loan,List<GetTEmi> list) async {
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    //final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -869,14 +869,14 @@ class GetPDF{
     String date = "${now.day}-${now.month}-${now.year}";
 
     final file = File('${Constants.DIR_INVESTOR}/ ${loan.tl_name} ${loan.tl_amount} ${date} List.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
 
   getTEminList(List<GivenList> list) async {
     final Workbook workbook = Workbook();
     final Worksheet sheet = workbook.worksheets[0];
     final Style FileHeaderStyle = FileHeaderCellStyle(workbook);
-    final Style DetailsStyle = DetailsCellStyle(workbook);
+    //final Style DetailsStyle = DetailsCellStyle(workbook);
     final Style TableHeadertyle = TableHeaderCellStyle(workbook);
     final Style CommonStyle = CommonCellStyle(workbook);
     sheet.enableSheetCalculations();
@@ -911,6 +911,6 @@ class GetPDF{
     String date = "${now.day}-${now.month}-${now.year}";
 
     final file = File('${Constants.DIR_INVESTOR}/ Repayment ${date}.xlsx');
-    await file.writeAsBytes(await bytes).then((value) {AppController().ShowToast(text:"Sheet Created");});
+    await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
 }

@@ -286,7 +286,7 @@ class _LOANLISTState extends State<LOANLIST> {
     }
     catch(e){
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
       _btnController.reset();
     }
 
@@ -460,7 +460,7 @@ class _LOANLISTState extends State<LOANLIST> {
     }
     catch(e){
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
       _btnController.reset();
     }
     print("Response:- " + response.data.toString());
@@ -524,7 +524,7 @@ class _LOANLISTState extends State<LOANLIST> {
     }
     catch(e){
       print("excep "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 

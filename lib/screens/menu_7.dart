@@ -65,7 +65,7 @@ class _TEAM_LISTState extends State<TEAM_LIST> {
       GetPDF().getTeamList(_list);
     }
     else{
-      AppController().ShowToast(text: Constants.NO_DATA);
+      AppController().showToast(text: Constants.NO_DATA);
     }
   }
 
@@ -475,7 +475,7 @@ print (queryParameters);
           _btnController.reset();
         }
         else if(resCode == Constants.CODE_CONFLICT){
-          AppController().ShowToast(text:Constants.MOBILE_EXIST,bgColor: Colors.red);
+          AppController().showToast(text:Constants.MOBILE_EXIST,bgColor: Colors.red);
           _phoneController.text = "";
           _btnController.reset();
         }
@@ -491,7 +491,7 @@ print (queryParameters);
     }
     catch(e){
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
       _btnController.reset();
     }
 
@@ -538,7 +538,7 @@ print (queryParameters);
     }
     catch(e){
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
       setState(() {
         isLoading = true;
       });

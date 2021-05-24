@@ -48,7 +48,7 @@ class _EMILISTState extends State<EMILIST> {
   final _btnController2 = new RoundedLoadingButtonController();
   final _formKey = GlobalKey<FormState>();
 
-  List<GetEmi> _list = List<GetEmi>();
+  List<GetEmi> _list = [];
   GetEmi GetEmiModel = new GetEmi();
 
   void initState() {
@@ -84,7 +84,7 @@ class _EMILISTState extends State<EMILIST> {
       GetPDF().getLoanOnId(customer, loan, _list);
     }
     else{
-      AppController().ShowToast(text: Constants.NO_DATA);
+      AppController().showToast(text: Constants.NO_DATA);
     }
   }
 
@@ -368,29 +368,6 @@ class _EMILISTState extends State<EMILIST> {
       valueColor: Colors.black,
     );
     // set up the buttons
-    Widget cancelButton = FlatButton(
-      child: Text(
-        "ના, રાખો",
-
-        style: new TextStyle(color: Colors.green, fontSize: 20),
-      ),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
-    Widget continueButton = FlatButton(
-      child: Text(
-        "હાં, કાઢી નાખો",
-        style: new TextStyle(color: Colors.red, fontSize: 20),
-      ),
-      onPressed: () {
-        DeleteLoanAPI(loan.id).whenComplete(() {
-          Navigator.of(context).pop(customer);
-        });
-        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => LOANLIST(customer: customer,)));
-        //RouteController().GoTo(context, Constants.LOAN_LIST_SCREEN, customer);
-      },
-    );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       shape: Mystyle().RoundShape,
@@ -646,7 +623,7 @@ class _EMILISTState extends State<EMILIST> {
       }
     } catch (e) {
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 
@@ -689,7 +666,7 @@ class _EMILISTState extends State<EMILIST> {
             isLoading = true;
           });
         } else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
           setState(() {
             isLoading = true;
           });
@@ -697,7 +674,7 @@ class _EMILISTState extends State<EMILIST> {
       }
     } catch (e) {
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 
@@ -737,14 +714,14 @@ class _EMILISTState extends State<EMILIST> {
             }
             isLoading = true;
           });
-          AppController().ShowToast(text: "${data.length} EMI Found");
+          AppController().showToast(text: "${data.length} EMI Found");
         } else if (resCode == Constants.CODE_WRONG_INPUT) {
-          AppController().ShowToast(text: msg, bgColor: Colors.red);
+          AppController().showToast(text: msg, bgColor: Colors.red);
           setState(() {
             isLoading = true;
           });
         } else if (resCode == Constants.CODE_CONFLICT) {
-          AppController().ShowToast(text: msg, bgColor: Colors.red);
+          AppController().showToast(text: msg, bgColor: Colors.red);
           setState(() {
             isLoading = true;
           });
@@ -754,7 +731,7 @@ class _EMILISTState extends State<EMILIST> {
             isLoading = true;
           });
         } else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
           setState(() {
             isLoading = true;
           });
@@ -762,7 +739,7 @@ class _EMILISTState extends State<EMILIST> {
       }
     } catch (e) {
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 }

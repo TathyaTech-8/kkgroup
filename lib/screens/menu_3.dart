@@ -75,7 +75,7 @@ class _PEND_COLLState extends State<PEND_COLL> {
       GetPDF().getTodayList(_list, "બાકી", true);
     }
     else{
-      AppController().ShowToast(text: Constants.NO_DATA);
+      AppController().showToast(text: Constants.NO_DATA);
     }
   }
 
@@ -401,7 +401,7 @@ class _PEND_COLLState extends State<PEND_COLL> {
     }
     catch(e){
       print("excep "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   Future<void> GetEmiOnDateAPI() async {
@@ -435,7 +435,7 @@ class _PEND_COLLState extends State<PEND_COLL> {
             }
             isLoading =true;
           });
-          AppController().ShowToast(text: "${data.length} EMI Found");
+          AppController().showToast(text: "${data.length} EMI Found");
           print("${data.length} EMI Found");
         }
         else if(resCode == Constants.CODE_WRONG_INPUT){
@@ -466,7 +466,7 @@ class _PEND_COLLState extends State<PEND_COLL> {
     }
     catch(e){
       print("excep in get "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   Future<void> GetCustAPI(String id) async {
@@ -489,7 +489,7 @@ class _PEND_COLLState extends State<PEND_COLL> {
           print("cst data chk = ${customer.cust_id} ${data.length}");
         }
         else if(nodata["response_code"] == Constants.CODE_NULL){
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
         }
       }
       else {
@@ -499,7 +499,7 @@ class _PEND_COLLState extends State<PEND_COLL> {
     }
     catch(e){
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   Future<void> GetLoansAPI(String cust_id,String loan_id) async {
@@ -533,13 +533,13 @@ class _PEND_COLLState extends State<PEND_COLL> {
           //AppController().ShowToast(text: Constants.NO_REACHABILITY);
         }
         else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
         }
       }
     }
     catch(e){
       print("excep "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 

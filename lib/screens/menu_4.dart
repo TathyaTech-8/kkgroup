@@ -74,7 +74,7 @@ class _COLL_BANKState extends State<COLL_BANK> {
       GetPDF().getTxnList(_list, title);
     }
     else{
-      AppController().ShowToast(text: Constants.NO_DATA);
+      AppController().showToast(text: Constants.NO_DATA);
     }
   }
   @override
@@ -350,9 +350,6 @@ class _COLL_BANKState extends State<COLL_BANK> {
     Response response;
     Dio dio = new Dio();
 
-
-    var newDate = "";
-
     try {
       var queryParameters = {
         "txn_to":Constants.USERID,
@@ -374,7 +371,7 @@ class _COLL_BANKState extends State<COLL_BANK> {
             //_btnController.success();
           });
         } else  {
-          AppController().ShowToast(text: Constants.NO_REACHABILITY);
+          AppController().showToast(text: Constants.NO_REACHABILITY);
           setState(() {
             //isLoading = true;
           });
@@ -382,7 +379,7 @@ class _COLL_BANKState extends State<COLL_BANK> {
       }
     } catch (e) {
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 
@@ -469,7 +466,7 @@ class _COLL_BANKState extends State<COLL_BANK> {
     }
     catch(e){
       print("excep "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 }

@@ -18,7 +18,7 @@ class Constants{
   static String API_GETOTH = "https://tathyatech.com/api/showotherdata.php";
   static String API_UPDATETXN = "https://tathyatech.com/api/transectiondataupadate.php";
   static String API_OTHADD = "https://tathyatech.com/api/othdataadd.php";
-  static String API_GETTLOAN = "https://tathyatech.com/api/tloanshow.p                      hp";
+  static String API_GETTLOAN = "https://tathyatech.com/api/tloanshow.php";
   static String API_GETTEMI = "https://tathyatech.com/api/tlemishow.php";
   static String API_UPDATETLAON = "https://tathyatech.com/api/tloanadd.php";
   static String API_UPDATETEMI = "https://tathyatech.com/api/tlemiupdate.php";

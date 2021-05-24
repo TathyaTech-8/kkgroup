@@ -158,7 +158,7 @@ class _LoginLogState extends State<LoginLog> {
     }
     catch (e) {
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 }

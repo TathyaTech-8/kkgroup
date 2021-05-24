@@ -347,7 +347,7 @@ class _TLOANState extends State<TLOAN> {
     }
     catch(e){
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
       _btnController.reset();
     }
 
@@ -396,7 +396,7 @@ class _TLOANState extends State<TLOAN> {
     }
     catch(e){
       print(e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
       setState(() {
         isLoading = true;
       });

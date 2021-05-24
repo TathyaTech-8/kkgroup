@@ -308,7 +308,7 @@ GetColor(diff){
             isLoading = true;
           });
         } else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
           setState(() {
             isLoading = true;
           });
@@ -316,7 +316,7 @@ GetColor(diff){
       }
     } catch (e) {
       print("excep " + e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
   Future<void> GetEmiOnDateAPI() async {
@@ -356,13 +356,13 @@ GetColor(diff){
           //AppController().ShowToast(text: "${data.length} EMI Found");
         }
         else if(resCode == Constants.CODE_WRONG_INPUT){
-          AppController().ShowToast(text:msg,bgColor: Colors.red);
+          AppController().showToast(text:msg,bgColor: Colors.red);
           setState(() {
             isLoading = true;
           });
         }
         else if(resCode == Constants.CODE_CONFLICT){
-          AppController().ShowToast(text:msg,bgColor: Colors.red);
+          AppController().showToast(text:msg,bgColor: Colors.red);
           setState(() {
             isLoading = true;
           });
@@ -374,7 +374,7 @@ GetColor(diff){
           });
         }
         else if (resCode == Constants.CODE_NULL) {
-          AppController().ShowToast(text: Constants.NO_DATA);
+          AppController().showToast(text: Constants.NO_DATA);
           setState(() {
             isLoading = true;
           });
@@ -383,7 +383,7 @@ GetColor(diff){
     }
     catch(e){
       print("excep "+e.toString());
-      AppController().ShowToast(text: Constants.NO_INTERNET);
+      AppController().showToast(text: Constants.NO_INTERNET);
     }
   }
 

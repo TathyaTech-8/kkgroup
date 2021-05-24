@@ -434,6 +434,7 @@ class BankData{
   String bl_loan_expance;
   String bl_loan_given;
   String bl_other_expance;
+  String bl_other_income;
   String bl_cloas;
 
   BankData({
@@ -447,6 +448,7 @@ class BankData{
     this.bl_loan_expance,
     this.bl_loan_given,
     this.bl_other_expance,
+    this.bl_other_income,
     this.bl_cloas
   });
 
@@ -461,6 +463,7 @@ class BankData{
     bl_loan_expance = json["bl_loan_expance"];
     bl_loan_given = json["bl_loan_given"];
     bl_other_expance = json["bl_other_expance"];
+    bl_other_income = json["bl_other_income"];
     bl_cloas = json["bl_cloas"];
   }
 }

@@ -413,8 +413,8 @@ class GetPDF{
     }
     int end = rowno-1;
 
-    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,4), "=SUM(${getStringRange(start, 5,end,5)})");
-    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,5), "=SUM(${getStringRange(start, 6,end,6)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,4), "=SUM(${getStringRange(start, 4,end,4)})");
+    setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,5), "=SUM(${getStringRange(start, 5,end,5)})");
 
     for(int i = 1; i <= sheet.getLastColumn();i++){
       sheet.autoFitColumn(i);
@@ -539,7 +539,7 @@ class GetPDF{
 
       }
     }
-    end = rowno;
+    end = rowno-1;
     rowno++;
     setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,4), "=SUM(${getStringRange(start, 4,end,4)})");
     setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,5), "=SUM(${getStringRange(start, 5,end,5)})");
@@ -601,7 +601,7 @@ class GetPDF{
           rowno++;
         }
       }
-      end = rowno;
+      end = rowno-1;
       setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,6), "=SUM(${getStringRange(start, 6,end,6)})");
       setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,7), "=SUM(${getStringRange(start, 7,end,7)})");
       setCellFormula(sheet, TableHeadertyle, getStringRange(rowno,8), "=SUM(${getStringRange(start, 8,end,8)})");

@@ -103,7 +103,7 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
     print("$Opning    $Closing");
 
     for(var element in _list){
-      int Inc = int.parse(element.bl_loan_amt) + int.parse(element.bl_emi_amount) + int.parse(element.bl_penlti_amount) + int.parse(element.bl_other_income);
+      int Inc = int.parse(element.bl_loan_amt) + int.parse(element.bl_emi_amount) + int.parse(element.bl_penlti_amount) + int.parse(element.bl_other_income??"0");
       //int Exp = int.parse(element.bl_loan_expance) + int.parse(element.bl_loan_given) + int.parse(element.bl_other_expance);
       int Exp = int.parse(element.bl_loan_expance) + int.parse(element.bl_other_expance);
       int Sav = int.parse(element.bl_saving) - int.parse(element.bl_other_expance) - int.parse(element.bl_loan_expance);
@@ -224,7 +224,7 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
       AppController().setSelMY(month,year);
       isLoading = true;
       _list = List.from(_Fulllist);
-      if(_list.length > 0){CalculateValues();}
+      if(_list.length > 0){ CalculateValues();}
     });
   }
   MainCard2(String title) {
@@ -287,7 +287,7 @@ class _BANK_TOTALState extends State<BANK_TOTAL> {
   ListCard(){
 
     if(month == "0"){
-      
+      print(_list.length);
       return Expanded(child:  ListView.builder(
         shrinkWrap: true,
         padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),

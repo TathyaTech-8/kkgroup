@@ -374,10 +374,8 @@ class GetPDF{
     final List<int> bytes = workbook.saveAsStream();
     workbook.dispose();
 
-    DateTime now = new DateTime.now();
-    String date = "${now.day}-${now.month}-${now.year}";
 
-    final file = File('${Constants.DIR_LOAN}/Transaction List $date.xlsx');
+    final file = File('${Constants.DIR_LOAN}/Transaction List $title.xlsx');
     await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
   getOthList(List<OthList> _list, String title) async {
@@ -423,10 +421,8 @@ class GetPDF{
     final List<int> bytes = workbook.saveAsStream();
     workbook.dispose();
 
-    DateTime now = new DateTime.now();
-    String date = "${now.day}-${now.month}-${now.year}";
 
-    final file = File('${Constants.DIR_LOAN}/Other Data List $date.xlsx');
+    final file = File('${Constants.DIR_LOAN}/Other Data $title.xlsx');
     await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
   getTeamList(List<GetTeam> _list) async {
@@ -708,6 +704,7 @@ class GetPDF{
     List<int> totalCell = [0,0,0,0,0,0];
     for(int i = 0; i < 6; i++){
 
+
       setCellValue(sheet, DetailsStyle, getStringRange(rowno, 1, rowno, 5), tablename[i], autofit: false,merge: true);
       rowno++;
 
@@ -732,18 +729,25 @@ class GetPDF{
       }
 
       setCellValue(sheet, TableHeadertyle, getStringRange(rowno, 4), "ટોટલ");
-      setCellFormula(sheet, TableHeadertyle, getStringRange(rowno, 5), "=SUM(${getStringRange(start, 5,end,5)})");
+
+      if(lists[i].isNotEmpty){
+        setCellFormula(sheet, TableHeadertyle, getStringRange(rowno, 5), "=SUM(${getStringRange(start, 5,end,5)})");
+      }
+      else{
+        setCellValue(sheet, TableHeadertyle, getStringRange(rowno, 5), 0);
+      }
+
 
       totalCell[i] = rowno;
       rowno = rowno + 2;
     }
 
-    String getcell = "=SUM(${getStringRange(totalCell[1], 5)}, ${getStringRange(totalCell[2], 5)}, ${getStringRange(totalCell[5], 5)}, )";
+    String getcell = "=SUM(${getStringRange(totalCell[1]??26, 5)}, ${getStringRange(totalCell[2]??26, 5)}, ${getStringRange(totalCell[5]??26, 5)}, )";
     setCellValue(sheet, TableHeadertyle, getStringRange(rowno, 4), "ટોટલ આવક");
     setCellFormula(sheet, TableHeadertyle, getStringRange(rowno, 5), getcell);
 
     rowno++;
-    String getcell2 = "=SUM(${getStringRange(totalCell[0], 5)},${getStringRange(totalCell[3], 5)}, ${getStringRange(totalCell[4], 5)},)";
+    String getcell2 = "=SUM(${getStringRange(totalCell[0]??26, 5)},${getStringRange(totalCell[3]??26, 5)}, ${getStringRange(totalCell[4]??26, 5)},)";
     setCellValue(sheet, TableHeadertyle, getStringRange(rowno, 4), "ટોટલ ખર્ચ");
     setCellFormula(sheet, TableHeadertyle, getStringRange(rowno, 5), getcell2);
 
@@ -754,10 +758,7 @@ class GetPDF{
     final List<int> bytes = workbook.saveAsStream();
     workbook.dispose();
 
-    DateTime now = new DateTime.now();
-    String date = "${now.day}-${now.month}-${now.year}";
-
-    final file = File('${Constants.DIR_HISAB}/Hisab_${date}.xlsx');
+    final file = File('${Constants.DIR_HISAB}/Total Hisab ${title}.xlsx');
     await file.writeAsBytes(await bytes).then((value) {AppController().showToast(text:"Sheet Created");});
   }
 
